@@ -1,4 +1,4 @@
-<img style="float: left;" src="inst/darts_logo.png" width="100%">
+<img style="float: left;" src="inst/darts_logo.png">
 
 
 # dartle

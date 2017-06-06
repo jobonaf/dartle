@@ -2,7 +2,14 @@
 
 
 # dartle
-air quality model benchmarking
+_dartle_ is a toolkit of functions for air quality model benchmarking, inspired by the [DELTA tool](http://aqm.jrc.ec.europa.eu/index.aspx) (JRC-IES) and the work of the [FAIRMODE](http://fairmode.jrc.ec.europa.eu/) WP1.
+
+```r
+delta + R -> dartle
+```
+
+## references
+* [Guidance Document on Modelling Quality Objectives and Benchmarking](http://fairmode.jrc.ec.europa.eu/document/fairmode/WG1/Guidance_MQO_Bench_vs2.1.pdf)  
 
 ----
 <sub>

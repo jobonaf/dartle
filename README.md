@@ -2,7 +2,7 @@
 
 
 # dartle
-_dartle_ is a toolkit of functions for air quality model benchmarking, inspired by the [DELTA tool](http://aqm.jrc.ec.europa.eu/index.aspx) (JRC-IES) and the work of the [FAIRMODE](http://fairmode.jrc.ec.europa.eu/) WP1.
+A toolkit of R functions for air quality model benchmarking, inspired by the [DELTA tool](http://aqm.jrc.ec.europa.eu/index.aspx) (JRC-IES) and the work of the [FAIRMODE](http://fairmode.jrc.ec.europa.eu/) WP1.
 
 ```r
 delta + R -> dartle

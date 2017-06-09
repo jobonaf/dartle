@@ -8,6 +8,13 @@ A toolkit of R functions for air quality model benchmarking, inspired by the [DE
 delta + R -> dartle
 ```
 
+## installation
+```r
+require("devtools")
+devtools::install_github("jobonaf/dartle")
+```
+
+
 ## references
 * [Guidance Document on Modelling Quality Objectives and Benchmarking](http://fairmode.jrc.ec.europa.eu/document/fairmode/WG1/Guidance_MQO_Bench_vs2.1.pdf)  
 

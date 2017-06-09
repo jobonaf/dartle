@@ -25,15 +25,15 @@ NMSD(obs, mod)
 \item{mod}{numeric vector of modelled values}
 }
 \value{
-RMSE as in eq.1, tab.1, p.18 in Janssen et al., 2017
+\code{RMSE}: Root Mean Square Error as in eq.1, tab.1, p.18 in Janssen et al., 2017
 
-R as in eq.2, tab.1, p.18 in Janssen et al., 2017
+\code{R}: Correlation coefficient as in eq.2, tab.1, p.18 in Janssen et al., 2017
 
-BIAS as in eq.3, tab.1, p.18 in Janssen et al., 2017
+\code{BIAS}: bias as in eq.3, tab.1, p.18 in Janssen et al., 2017
 
-NMB as in eq.3, tab.1, p.18 in Janssen et al., 2017
+\code{NMB}: Normalised Mean Bias as in eq.3, tab.1, p.18 in Janssen et al., 2017
 
-NMSD as in eq.4, tab.1, p.18 in Janssen et al., 2017
+\code{NMSD}: Normalised Mean Standard Deviation as in eq.4, tab.1, p.18 in Janssen et al., 2017
 }
 \description{
 \code{RMSE}: Root Mean Square Error

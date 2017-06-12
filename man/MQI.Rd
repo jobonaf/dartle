@@ -26,11 +26,17 @@ MQI_year(obs, mod, pollutant, beta = 2, ...)
 to \code{U_obs_95_year} in \code{MQI_year}}
 }
 \value{
-\code{MQI_ts}: Modelling Quality Indicator for a time series, as in eq.15, p.22 in Janssen et al., 2017
+\code{MQI_ts}: Modelling Quality Indicator for a time series,
+as in eq.15, p.22 in Janssen et al., 2017
+\deqn{MQI = \frac{|O_i - M_i|}{\beta U_{95}(O_i)}}{}
 
-\code{MQI_ts_synth}: scalar synthetic Modelling Quality Indicator for a time series, as in eq.17, p.23 in Janssen et al., 2017
+\code{MQI_ts_synth}: scalar synthetic Modelling Quality Indicator for a time series,
+as in eq.17, p.23 in Janssen et al., 2017
+\deqn{MQI = \frac{\sqrt{\frac{1}{N} \sum_{i=1}^N{(O_i-M_i)^2}}}{\beta \sqrt{\frac{1}{N} \sum_{i=1}^N{U_{95}(O_i)^2}}}}{}
 
-\code{MQI_year}: Modelling Quality Indicator for yearly average, as in eq.18, p.23 in Janssen et al., 2017
+\code{MQI_year}: Modelling Quality Indicator for yearly average,
+as in eq.18, p.23 in Janssen et al., 2017
+\deqn{MQI = \frac{|\bar{O}-\bar{M}|}{\beta U_{95}(\bar{O})}}{}
 }
 \description{
 \code{MQI_ts}: MQI for a time series (vector)

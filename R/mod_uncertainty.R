@@ -9,8 +9,11 @@
 #' @param ... arguments to be passed to \code{U_obs_95} in \code{RMS_U_mod},
 #'  to \code{U_obs_95_year} in \code{U_mod_year}
 #'
-#' @return \code{RMS_U_mod}: root mean square uncertainty for model time series, as in eq.23, p.24 in Janssen et al., 2017
+#' @return \code{RMS_U_mod}: root mean square uncertainty for model time series,
+#' as in eq.23, p.24 in Janssen et al., 2017
+#' \deqn{RMS_{U_M} = RMS_U \sqrt{\left(\frac{RMSE}{RMS_U}\right)^2-1}}{}
 #' @rdname mod_uncertainty
+#' @export
 RMS_U_mod <- function(obs, mod, pollutant, ...) {
   rmsu <- RMS_U_obs(obs = obs, pollutant = pollutant, ...)
   rmse <- RMSE(obs = obs, mod = mod)
@@ -19,8 +22,11 @@ RMS_U_mod <- function(obs, mod, pollutant, ...) {
 
 #' \code{U_mod_year}: Uncertainty for model yearly averages
 #'
-#' @return \code{MQI_ts}: uncertainty for model yearly averages, as in eq.24, p.24 in Janssen et al., 2017
+#' @return \code{MQI_ts}: uncertainty for model yearly averages,
+#' as in eq.24, p.24 in Janssen et al., 2017
+#' \deqn{U(\bar{M}) = U_{95}(\bar{O}) \sqrt{\left(\frac{BIAS}{U_{95}(\bar{O})}\right)^2-1}}{}
 #' @rdname mod_uncertainty
+#' @export
 U_mod_year <- function(obs, mod, pollutant, ...) {
   u95 <- U_obs_95_year(obs = obs, pollutant = pollutant, ...)
   bias <- BIAS(obs = obs, mod = mod)

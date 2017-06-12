@@ -31,11 +31,17 @@ U_obs_95_year(obs, pollutant = NULL, U_RV95r = NULL, alpha = NULL,
 \item{Nnp}{parameter \eqn{N_{np}}{N_np}; optional if \code{pollutant} is given, otherwise compulsory}
 }
 \value{
-\code{U_obs_95}: measurements uncertainty \eqn{U_{95}}{U_95}, as in eq.10, p.20 in Janssen et al., 2017
+\code{U_obs_95}: measurements uncertainty \eqn{U_{95}}{U_95},
+as in eq.10, p.20 in Janssen et al., 2017
+\deqn{U_{95}(O_i) = U^{RV}_{95,r} \sqrt{(1-\alpha^2) O^2_i + \alpha^2 \cdot RV^2}}{}
 
-\code{RMS_U_obs}: root mean square uncertainty \eqn{RMS_{U}}{RMS_U}, as in eq.11, p.20 in Janssen et al., 2017
+\code{RMS_U_obs}: root mean square uncertainty \eqn{RMS_{U}}{RMS_U},
+as in eq.11, p.20 in Janssen et al., 2017
+\deqn{RMS_U = U^{RV}_{95,r} \sqrt{(1-\alpha^2) (\bar{O}^2 + \sigma_O^2) + \alpha^2 \cdot RV^2}}{}
 
-\code{U_obs_95_year}: measurements uncertainty for yearly averaged values \eqn{U_{95}}{U_95}, as in eq.12, p.20 in Janssen et al., 2017
+\code{U_obs_95_year}: measurements uncertainty for yearly averaged values \eqn{U_{95}}{U_95},
+as in eq.12, p.20 in Janssen et al., 2017
+\deqn{U_{95}(\bar{O}) \cong U^{RV}_{95,r} \sqrt{\frac{(1-\alpha^2)}{N_p}\bar{O}^2 + \frac{\alpha^2 \cdot RV^2}{N_{np}}}}{}
 }
 \description{
 \code{U_obs_95}: Measurements uncertainty

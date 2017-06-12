@@ -21,9 +21,13 @@ U_mod_year(obs, mod, pollutant, ...)
 to \code{U_obs_95_year} in \code{U_mod_year}}
 }
 \value{
-\code{RMS_U_mod}: root mean square uncertainty for model time series, as in eq.23, p.24 in Janssen et al., 2017
+\code{RMS_U_mod}: root mean square uncertainty for model time series,
+as in eq.23, p.24 in Janssen et al., 2017
+\deqn{RMS_{U_M} = RMS_U \sqrt{\left(\frac{RMSE}{RMS_U}\right)^2-1}}{}
 
-\code{MQI_ts}: uncertainty for model yearly averages, as in eq.24, p.24 in Janssen et al., 2017
+\code{MQI_ts}: uncertainty for model yearly averages,
+as in eq.24, p.24 in Janssen et al., 2017
+\deqn{U(\bar{M}) = U_{95}(\bar{O}) \sqrt{\left(\frac{BIAS}{U_{95}(\bar{O})}\right)^2-1}}{}
 }
 \description{
 \code{RMS_U_mod}: RMS uncertainty for model time series

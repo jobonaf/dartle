@@ -7,6 +7,7 @@
 \alias{BIAS}
 \alias{NMB}
 \alias{NMSD}
+\alias{CRMSE}
 \title{Core Set of Statistical Indicators}
 \usage{
 RMSE(obs, mod)
@@ -18,6 +19,8 @@ BIAS(obs, mod)
 NMB(obs, mod)
 
 NMSD(obs, mod)
+
+CRMSE(obs, mod)
 }
 \arguments{
 \item{obs}{numeric vector of observed values}
@@ -26,14 +29,22 @@ NMSD(obs, mod)
 }
 \value{
 \code{RMSE}: Root Mean Square Error as in eq.1, tab.1, p.18 in Janssen et al., 2017
+\deqn{RMSE= \sqrt{ \frac{1}{N} \sum_{i=1}^{N}{(M_i - O_i})^2}}{}
 
 \code{R}: Correlation coefficient as in eq.2, tab.1, p.18 in Janssen et al., 2017
+\deqn{R= \frac{\sum_{i=1}^{N}{(O_i - \bar{O})(M_i - \bar{M})}}{\sqrt{\sum_{i=1}^{N}{(O_i - \bar{O})^2}}{\sqrt{\sum_{i=1}^{N}{(M_i - \bar{M}})^2}}}}{}
 
 \code{BIAS}: bias as in eq.3, tab.1, p.18 in Janssen et al., 2017
+\deqn{BIAS=\bar{M}-\bar{O}}{}
 
 \code{NMB}: Normalised Mean Bias as in eq.3, tab.1, p.18 in Janssen et al., 2017
+\deqn{NMB=\frac{\bar{M}-\bar{O}}{\bar{O}}}{}
 
 \code{NMSD}: Normalised Mean Standard Deviation as in eq.4, tab.1, p.18 in Janssen et al., 2017
+\deqn{NMSD=\frac{\sigma_{M}-\sigma_{O}}{\sigma_{O}}}{}
+
+\code{CRMSE}: Centered Root Mean Square Error as in eq.31, p.29 in Janssen et al., 2017
+\deqn{CRMSE= \sqrt{ \frac{1}{N} \sum_{i=1}^{N}{[(M_i - \bar{M})-(O_i - \bar{O})]^2 }}}{}
 }
 \description{
 \code{RMSE}: Root Mean Square Error
@@ -45,6 +56,8 @@ NMSD(obs, mod)
 \code{NMB}: Normalised Mean Bias
 
 \code{NMSD}: Normalised Mean Standard Deviation
+
+\code{CRMSE}: Centered Root Mean Square Error
 }
 \references{
 Janssen et al., 2017. "Guidance Document on Modelling Quality Objectives and Benchmarking. Version 2.1"

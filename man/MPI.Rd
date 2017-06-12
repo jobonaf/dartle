@@ -7,6 +7,7 @@
 \alias{MPI_sdev_time}
 \alias{MPI_corr_space}
 \alias{MPI_sdev_space}
+\alias{MPI_perc}
 \title{Modelling Performance Indicators}
 \usage{
 MPI_bias(obs, mod, pollutant, beta = 2, ...)
@@ -18,6 +19,8 @@ MPI_sdev_time(obs, mod, pollutant, beta = 2, ...)
 MPI_corr_space(obs, mod, pollutant, beta = 2, ...)
 
 MPI_sdev_space(obs, mod, pollutant, beta = 2, ...)
+
+MPI_perc(obs, mod, pollutant, beta = 2, ...)
 }
 \arguments{
 \item{obs}{numeric vector of observed values (yearly averages in \code{MPI_*_space})}
@@ -29,18 +32,32 @@ MPI_sdev_space(obs, mod, pollutant, beta = 2, ...)
 \item{beta}{parameter \eqn{\beta} (default is 2)}
 
 \item{...}{arguments to be passed to \code{RMS_U_obs} in \code{MPI_bias} and \code{MPI_*_time},
-to \code{U_obs_95_year} in \code{MPI_*_space}}
+to \code{U_obs_95_year} in \code{MPI_*_space}, to \code{U_obs_95} in \code{MPI_perc}}
 }
 \value{
-\code{MPI_bias}: Modelling Performance Indicator for the bias, as in eq.26, tab.4, p.27 in Janssen et al., 2017
+\code{MPI_bias}: Modelling Performance Indicator for the bias,
+as in eq.26, tab.4, p.27 in Janssen et al., 2017
+\deqn{MPI_{bias} = \frac{BIAS}{\beta RMS_U}}{}
 
-\code{MPI_corr_time}: temporal Modelling Performance Indicator for the correlation, as in eq.27, tab.4, p.27 in Janssen et al., 2017
+\code{MPI_corr_time}: temporal Modelling Performance Indicator for the correlation,
+as in eq.27, tab.4, p.27 in Janssen et al., 2017
+\deqn{MPI_{corr,time} = \frac{R} { \left(1 - \frac{\beta^2  RMS_U^2} { 2 \sigma_O \sigma_M} \right) }}{}
 
-\code{MPI_sdev_time}: temporal Modelling Performance Indicator for the standard deviation, as in eq.28, tab.4, p.27 in Janssen et al., 2017
+\code{MPI_sdev_time}: temporal Modelling Performance Indicator for the standard deviation,
+as in eq.28, tab.4, p.27 in Janssen et al., 2017
+\deqn{MPI_{s.d.,time} = \frac{\sigma_M - \sigma_O}{\beta RMS_U}}{}
 
-\code{MPI_corr_space}: spatial Modelling Performance Indicator for the correlation, as in eq.29, tab.5, p.27 in Janssen et al., 2017
+\code{MPI_corr_space}: spatial Modelling Performance Indicator for the correlation,
+as in eq.29, tab.5, p.27 in Janssen et al., 2017
+\deqn{MPI_{corr,space} =  \frac{R} { \left(1 - \frac{\beta^2  RMS_{\bar{U}}^2} { 2 \sigma_{\bar{O}} \sigma_{\bar{M}}} \right) }}{}
 
-\code{MPI_sdev_space}: spatial Modelling Performance Indicator for the standard deviation, as in eq.30, tab.5, p.27 in Janssen et al., 2017
+\code{MPI_sdev_space}: spatial Modelling Performance Indicator for the standard deviation,
+as in eq.30, tab.5, p.27 in Janssen et al., 2017
+\deqn{MPI_{s.d.,space} = \frac{\sigma_{\bar{M}} - \sigma_{\bar{O}}}{\beta RMS_{\bar{U}}}}{}
+
+\code{MPI_perc}: Modelling Performance Indicator for high percentile values,
+as in eq.35, p.35 in Janssen et al., 2017
+\deqn{MPI_{perc} = \frac{M_{perc} - O_{perc}}{\beta U_{95} (O_{perc})}}{}
 }
 \description{
 \code{MPI_bias}: MPI for bias
@@ -52,6 +69,8 @@ to \code{U_obs_95_year} in \code{MPI_*_space}}
 \code{MPI_corr_space}: spatial MPI for correlation
 
 \code{MPI_sdev_space}: spatial MPI for standard deviation
+
+\code{MPI_perc}: MPI for high percentile values
 }
 \references{
 Janssen et al., 2017. "Guidance Document on Modelling Quality Objectives and Benchmarking. Version 2.1"

@@ -1,0 +1,5 @@
+exportPattern("^[[:alpha:]]+")
+importFrom("stats", "sd", "na.omit", "quantile")
+importFrom("dplyr", "full_join")
+importFrom("RcppRoll", "roll_meanr", "roll_sumr")
+

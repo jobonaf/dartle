@@ -24,7 +24,7 @@ threshold(pollutant = c("NO2", "O3", "PM10", "PM2.5"))
 (if possible, according to legislation): for hourly NO2 99.8\%, for the 8h daily maximum of ozone
 92.9\%, for daily PM10 and PM2.5 90.4\%
 
-\code{threshold}: numeric values (in \eqn{\mug/m^3}{\mug/m3}) of the threshold used to
+\code{threshold}: numeric values (in \eqn{\mu g/m^3}{\mug/m3}) of the threshold used to
 calculate exceedances, according to legislation:
 200 for hourly NO2, 120 for the 8h daily maximum of ozone, 50 for daily PM10, \code{NA} otherwise
 }

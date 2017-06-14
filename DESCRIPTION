@@ -11,4 +11,7 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
 Depends: R (>= 2.10)
-Imports: stats, dplyr, RcppRoll, data.table
+Imports: stats, dplyr, RcppRoll, data.table, ggplot2
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr

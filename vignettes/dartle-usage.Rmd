@@ -1,0 +1,76 @@
+---
+title: "Air quality model benchmarking with _dartle_"
+author: "Giovanni Bonafè"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+<img style="float: left;" src="../inst/darts_logo.png">
+
+
+The R package _dartle_ is a toolkit of functions for air quality model benchmarking, inspired by the [DELTA tool](http://aqm.jrc.ec.europa.eu/index.aspx) (JRC-IES) and the work of the [FAIRMODE](http://fairmode.jrc.ec.europa.eu/) WP1.
+
+In R, you can install _dartle_ like this:
+```r
+require("devtools")
+devtools::install_github("jobonaf/dartle")
+```
+
+Once installed, you can load it
+```{r, echo=TRUE, results='asis', message=FALSE, warning=FALSE}
+library("dartle")
+```
+
+The package includes some datasets:
+
+
+|Item                |Title                         |
+|:-------------------|:-----------------------------|
+|mod.data (mod_data) |Forecasted concentrations     |
+|obs.no2 (obs_data)  |Observed NO2 concentrations   |
+|obs.o3 (obs_data)   |Observed ozone concentrations |
+|obs.pm10 (obs_data) |Observed PM10 concentrations  |
+|obs.pm25 (obs_data) |Observed PM2.5 concentrations |
+
+
+To produce a _target plot_, we must arrange forecasted and observed data in the same _data.frame_. First, we extract PM10 forecasts with `filter` and calculate the daily averages with `dMean`
+```{r, echo=TRUE, results='asis', message=FALSE, warning=FALSE}
+require(dplyr)
+Mod <- dMean(mod.data %>% filter(Var=="c_PM10"),
+             value = "Value", time = "Time", point = "Point")
+```
+
+Then, we adjust the format of the observed dataset
+```{r, echo=TRUE, results='asis', message=FALSE, warning=FALSE}
+Obs <- obs.pm10 %>% mutate(Day=format(Time,"%Y-%m-%d"), Point=ID)
+```
+
+So, observed and forecasted datasets can be meld in a single _data.frame_ (`Dat`)
+```{r, echo=TRUE, results='asis', message=FALSE, warning=FALSE}
+Dat <- inner_join(Mod, Obs, by=c("Point", "Day"), suffix = c(".mod", ".obs"))
+```
+
+Now `Dat` can be passed to the `target_report` function, to calculate some quality indicators
+```{r, echo=TRUE, results='asis', message=FALSE, warning=FALSE}
+t_rep <- target_report(Dat, obs = "Value.obs", mod = "Value.mod",
+                       point = "Point", pollutant = "PM10")
+```
+
+Finally, `t_rep` (the output of the `target_report` function) is ready to be passed to the `target_plot` function
+```{r, fig.show='asis', fig.height=7, fig.width=6, warning=FALSE} 
+p <- target_plot(t_rep)
+p
+```
+
+
+## references
+* [Guidance Document on Modelling Quality Objectives and Benchmarking](http://fairmode.jrc.ec.europa.eu/document/fairmode/WG1/Guidance_MQO_Bench_vs2.1.pdf)  
+
+----
+<sub>
+<div>Logo made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+</sub>

@@ -27,7 +27,7 @@ MQI_ts <- function(obs, mod, pollutant, beta=2, ...) {
 #' @rdname MQI
 #' @export
 MQI_ts_synth <- function(obs, mod, pollutant, beta=2, ...) {
-  RMSE(obs=obs, mod=mod)/(beta*RMS_U_obs(pollutant, ...))
+  RMSE(obs=obs, mod=mod)/(beta*RMS_U_obs(obs=obs, pollutant = pollutant, ...))
 }
 
 #' \code{MQI_year}: MQI for yearly average

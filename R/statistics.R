@@ -21,7 +21,8 @@
   rmean <- RcppRoll::roll_meanr(Dat$x, n, na.rm=T)
   valid <- RcppRoll::roll_sumr(!is.na(Dat$x), n)
   rmean[valid<req] <- NA
-  return(rmean)
+  out <- data.frame(x=rmean, time=exptime)
+  return(out)
 }
 
 #' \code{dMaxAvg8h}: daily maximum of 8h rolling mean
@@ -42,13 +43,13 @@ dMaxAvg8h <- function(data, value, time="Time", point="Point", req = 18) {
   Point=Value=Day=Time=N=NULL  # to avoid warnings from R CMD check
   DT <- data.table(Value= data[,value],
                    Time = data[,time],
-                   Day  = format(data[,time],"%Y-%m-%d"),
                    Point= data[,point])
-  DT <- DT[,list(Value=.roll_meanr_time(Value, Time, n = 8, req = 6),
-              Day=Day),
+  DT <- DT[,list(Value=.roll_meanr_time(x = Value, time = Time, n = 8, req = 6)$x,
+                 Day=format(.roll_meanr_time(x = Value, time = Time, n = 8, req = 6)$time,"%Y-%m-%d")),
            by=list(Point)]
+  DT <- DT[!is.na(DT$Value),]
   DT <- DT[,list(Value=max(Value,na.rm=T),
-              N=.N),
+                 N=.N),
            by=list(Point,Day)]
   DT <- subset(DT, N>=req)
   return(DT)

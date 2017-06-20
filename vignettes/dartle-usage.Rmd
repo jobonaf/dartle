@@ -4,17 +4,16 @@ author: "Giovanni Bonafè"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Air quality model benchmarking with dartle}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-<img style="float: left;" src="../inst/darts_logo.png">
-
 
 The R package _dartle_ is a toolkit of functions for air quality model benchmarking, inspired by the [DELTA tool](http://aqm.jrc.ec.europa.eu/index.aspx) (JRC-IES) and the work of the [FAIRMODE](http://fairmode.jrc.ec.europa.eu/) WP1.
 
-In R, you can install _dartle_ like this:
+For _dartle_ to work, you need `R` (version 2.10 or higher) and the packages `stats`, `dplyr`, `RcppRoll`, `data.table` and `ggplot2`. To install _dartle_ downloading it from GitHub, use the package `devtools`, as follows:
+
 ```r
 require("devtools")
 devtools::install_github("jobonaf/dartle")
@@ -24,6 +23,9 @@ Once installed, you can load it
 ```{r, echo=TRUE, results='asis', message=FALSE, warning=FALSE}
 library("dartle")
 ```
+
+
+## Datasets
 
 The package includes some datasets:
 
@@ -36,10 +38,45 @@ The package includes some datasets:
 |obs.pm10 (obs_data) |Observed PM10 concentrations  |
 |obs.pm25 (obs_data) |Observed PM2.5 concentrations |
 
+Let's have a look to the forecasted data (ignore `EmissionTime`, `Intercept` and `Slope`)
+```{r, echo=TRUE, results='asis', message=FALSE, warning=FALSE}
+library(knitr)
+kable(head(mod.data))
+```
+
+Let's see where and when have been observed the highest concentrations. Of PM10
+```{r, echo=TRUE, results='asis', message=FALSE, warning=FALSE}
+require(dplyr)
+kable(head(obs.pm10 %>% arrange(desc(Value))))
+```
+
+
+PM2.5
+```{r, echo=TRUE, results='asis', message=FALSE, warning=FALSE}
+kable(head(obs.pm25 %>% arrange(desc(Value))))
+```
+
+
+NO2
+```{r, echo=TRUE, results='asis', message=FALSE, warning=FALSE}
+kable(head(obs.no2 %>% arrange(desc(Value))))
+```
+
+
+and ozone
+```{r, echo=TRUE, results='asis', message=FALSE, warning=FALSE}
+kable(head(obs.o3 %>% arrange(desc(Value))))
+```
+
+Note that for PM10, NO2 and ozone only background stations are provided, while `obs.pm25` includes also traffic and industrial stations. All the data are from the [Environmental Agency](http://www.arpa.fvg.it) of Friuli Venezia Giulia region (Italy).
+```{r, echo=TRUE, results='asis', message=FALSE, warning=FALSE}
+unique(obs.pm25$StationType)
+```
+
+## Target plots
 
 To produce a _target plot_, we must arrange forecasted and observed data in the same _data.frame_. First, we extract PM10 forecasts with `filter` and calculate the daily averages with `dMean`
 ```{r, echo=TRUE, results='asis', message=FALSE, warning=FALSE}
-require(dplyr)
 Mod <- dMean(mod.data %>% filter(Var=="c_PM10"),
              value = "Value", time = "Time", point = "Point")
 ```
@@ -49,25 +86,103 @@ Then, we adjust the format of the observed dataset
 Obs <- obs.pm10 %>% mutate(Day=format(Time,"%Y-%m-%d"), Point=ID)
 ```
 
-So, observed and forecasted datasets can be meld in a single _data.frame_ (`Dat`)
+So, observed and forecasted datasets can be meld in a single _data.frame_ (`Dat.pm10`)
 ```{r, echo=TRUE, results='asis', message=FALSE, warning=FALSE}
-Dat <- inner_join(Mod, Obs, by=c("Point", "Day"), suffix = c(".mod", ".obs"))
+Dat.pm10 <- inner_join(Mod, Obs, by=c("Point", "Day"), suffix = c(".mod", ".obs"))
 ```
 
 Now `Dat` can be passed to the `target_report` function, to calculate some quality indicators
 ```{r, echo=TRUE, results='asis', message=FALSE, warning=FALSE}
-t_rep <- target_report(Dat, obs = "Value.obs", mod = "Value.mod",
+t_rep <- target_report(Dat.pm10, obs = "Value.obs", mod = "Value.mod",
                        point = "Point", pollutant = "PM10")
 ```
 
 Finally, `t_rep` (the output of the `target_report` function) is ready to be passed to the `target_plot` function
-```{r, fig.show='asis', fig.height=7, fig.width=6, warning=FALSE} 
-p <- target_plot(t_rep)
-p
+```{r, fig.show='asis', fig.height=7, fig.width=6, message=FALSE, warning=FALSE} 
+target_plot(t_rep)
+```
+
+The same processing for PM2.5:
+```{r, echo=TRUE, results='asis', message=FALSE, warning=FALSE}
+Mod <- dMean(mod.data %>% filter(Var=="c_PM25"),
+             value = "Value", time = "Time", point = "Point")
+Obs <- obs.pm25 %>% mutate(Day=format(Time,"%Y-%m-%d"), Point=ID)
+Dat.pm25 <- inner_join(Mod, Obs, by=c("Point", "Day"), suffix = c(".mod", ".obs"))
+t_rep <- target_report(Dat.pm25, obs = "Value.obs", mod = "Value.mod",
+                       point = "Point", pollutant = "PM2.5")
+```
+
+And the plot
+```{r, fig.show='asis', fig.height=7, fig.width=6, message=FALSE, warning=FALSE} 
+target_plot(t_rep)
+```
+
+For NO2, the target plot is based on hourly data, therefore no daily average is performed
+```{r, echo=TRUE, results='asis', message=FALSE, warning=FALSE}
+Mod <- mod.data %>% filter(Var=="c_NO2") %>% mutate()
+Obs <- obs.no2 %>% rename(Point=ID)
+Dat.no2 <- inner_join(Mod, Obs, by=c("Point", "Time"), suffix = c(".mod", ".obs"))
+t_rep <- target_report(Dat.no2, obs = "Value.obs", mod = "Value.mod",
+                       point = "Point", pollutant = "NO2")
+```
+
+Note that the function `target_report` needs the argument `pollutant` because the parameters used to assess the measurements uncertainties are pollutant-dependent. 
+```{r, fig.show='asis', fig.height=7, fig.width=6, message=FALSE, warning=FALSE} 
+target_plot(t_rep)
 ```
 
 
-## references
+For ozone, we have to calculate daily maxima of the 8-hours running mean. 
+```{r, echo=TRUE, results='asis', message=FALSE, warning=FALSE}
+Mod <- dMaxAvg8h(mod.data %>% filter(Var=="c_O3"),
+             value = "Value", time = "Time", point = "Point")
+Obs <- obs.o3 %>% rename(Point=ID)
+```
+In this case, both observations and forecasts are provided as hourly averages in the datasets, so we need the function `dMaxAvg8h` again.
+```{r, echo=TRUE, results='asis', message=FALSE, warning=FALSE}
+Obs <- dMaxAvg8h(Obs, value = "Value", time = "Time", point = "Point")
+Dat.o3 <- inner_join(Mod, Obs, by=c("Point", "Day"), suffix = c(".mod", ".obs"))
+t_rep <- target_report(Dat.o3, obs = "Value.obs", mod = "Value.mod",
+                       point = "Point", pollutant = "O3")
+```
+
+
+```{r, fig.show='asis', fig.height=7, fig.width=6, message=FALSE, warning=FALSE} 
+target_plot(t_rep)
+```
+
+## Summary reports
+
+```{r, echo=TRUE, results='asis', message=FALSE, warning=FALSE, fig.height=7, fig.width=6}
+s_rep <- summary_report(Dat.pm10, obs = "Value.obs", mod = "Value.mod",
+                       point = "Point", pollutant = "PM10")
+summary_plot(s_rep)
+```
+
+
+```{r, echo=TRUE, results='asis', message=FALSE, warning=FALSE, fig.height=7, fig.width=6}
+s_rep <- summary_report(Dat.pm25, obs = "Value.obs", mod = "Value.mod",
+                       point = "Point", pollutant = "PM2.5")
+summary_plot(s_rep)
+```
+
+
+```{r, echo=TRUE, results='asis', message=FALSE, warning=FALSE, fig.height=7, fig.width=6}
+s_rep <- summary_report(Dat.no2, obs = "Value.obs", mod = "Value.mod",
+                       point = "Point", pollutant = "NO2")
+summary_plot(s_rep)
+```
+
+
+
+```{r, echo=TRUE, results='asis', message=FALSE, warning=FALSE, fig.height=7, fig.width=6}
+s_rep <- summary_report(Dat.o3, obs = "Value.obs", mod = "Value.mod",
+                       point = "Point", pollutant = "O3")
+summary_plot(s_rep)
+```
+
+
+## References
 * [Guidance Document on Modelling Quality Objectives and Benchmarking](http://fairmode.jrc.ec.europa.eu/document/fairmode/WG1/Guidance_MQO_Bench_vs2.1.pdf)  
 
 ----

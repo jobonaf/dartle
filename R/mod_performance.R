@@ -27,7 +27,7 @@ MPI_bias <- function(obs, mod, pollutant, beta=2, ...) {
 #'
 #' @return \code{MPI_corr_time}: temporal Modelling Performance Indicator for the correlation,
 #' as in eq.27, tab.4, p.27 in Janssen et al., 2017
-#' \deqn{MPI_{corr,time} = \frac{R} { \left(1 - \frac{\beta^2  RMS_U^2} { 2 \sigma_O \sigma_M} \right) }}{}
+#' \deqn{MPI_{corr,time} = \frac{1} { \left(R + \frac{\beta^2  RMS_U^2} { 2 \sigma_O \sigma_M} \right) }}{}
 #' @rdname MPI
 #' @export
 MPI_corr_time <- function(obs, mod, pollutant, beta=2, ...) {
@@ -37,7 +37,7 @@ MPI_corr_time <- function(obs, mod, pollutant, beta=2, ...) {
   sm <- sd(mod, na.rm=T)
   r <- R(obs = obs, mod = mod)
   rmsu <- RMS_U_obs(obs = obs, pollutant = pollutant, ...)
-  r / (1 - (beta^2 * rmsu^2) / (2*so*sm))
+  1 / (r + ((beta^2 * rmsu^2) / (2*so*sm)))
 }
 
 #' \code{MPI_sdev_time}: temporal MPI for standard deviation
@@ -60,7 +60,7 @@ MPI_sdev_time <- function(obs, mod, pollutant, beta=2, ...) {
 #'
 #' @return \code{MPI_corr_space}: spatial Modelling Performance Indicator for the correlation,
 #' as in eq.29, tab.5, p.27 in Janssen et al., 2017
-#' \deqn{MPI_{corr,space} =  \frac{R} { \left(1 - \frac{\beta^2  RMS_{\bar{U}}^2} { 2 \sigma_{\bar{O}} \sigma_{\bar{M}}} \right) }}{}
+#' \deqn{MPI_{corr,space} =  \frac{1} { \left(R + \frac{\beta^2  RMS_{\bar{U}}^2} { 2 \sigma_{\bar{O}} \sigma_{\bar{M}}} \right) }}{}
 #' @rdname MPI
 #' @importFrom stats na.omit
 #' @export
@@ -72,7 +72,7 @@ MPI_corr_space <- function(obs, mod, pollutant, beta=2, ...) {
   r <- R(obs = obs, mod = mod)
   uu <- na.omit(U_obs_95_year(obs = obs, pollutant = pollutant, ...))
   rmsu <- sqrt(sum(uu^2)/length(uu))
-  r / (1 - (beta^2 * rmsu^2) / (2*so*sm))
+  1 / (r + ((beta^2 * rmsu^2) / (2*so*sm)))
 }
 
 #' \code{MPI_sdev_space}: spatial MPI for standard deviation

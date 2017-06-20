@@ -41,7 +41,7 @@ as in eq.26, tab.4, p.27 in Janssen et al., 2017
 
 \code{MPI_corr_time}: temporal Modelling Performance Indicator for the correlation,
 as in eq.27, tab.4, p.27 in Janssen et al., 2017
-\deqn{MPI_{corr,time} = \frac{R} { \left(1 - \frac{\beta^2  RMS_U^2} { 2 \sigma_O \sigma_M} \right) }}{}
+\deqn{MPI_{corr,time} = \frac{1} { \left(R + \frac{\beta^2  RMS_U^2} { 2 \sigma_O \sigma_M} \right) }}{}
 
 \code{MPI_sdev_time}: temporal Modelling Performance Indicator for the standard deviation,
 as in eq.28, tab.4, p.27 in Janssen et al., 2017
@@ -49,7 +49,7 @@ as in eq.28, tab.4, p.27 in Janssen et al., 2017
 
 \code{MPI_corr_space}: spatial Modelling Performance Indicator for the correlation,
 as in eq.29, tab.5, p.27 in Janssen et al., 2017
-\deqn{MPI_{corr,space} =  \frac{R} { \left(1 - \frac{\beta^2  RMS_{\bar{U}}^2} { 2 \sigma_{\bar{O}} \sigma_{\bar{M}}} \right) }}{}
+\deqn{MPI_{corr,space} =  \frac{1} { \left(R + \frac{\beta^2  RMS_{\bar{U}}^2} { 2 \sigma_{\bar{O}} \sigma_{\bar{M}}} \right) }}{}
 
 \code{MPI_sdev_space}: spatial Modelling Performance Indicator for the standard deviation,
 as in eq.30, tab.5, p.27 in Janssen et al., 2017

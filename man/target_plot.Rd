@@ -35,6 +35,8 @@ target_plot(t_rep)
   \item{\code{Mod.ave}}{annual mean of forecasts (paired with observations)}
   \item{\code{rmsu}}{\eqn{RMS_U} (see \link{RMS_U_obs})}
   \item{\code{crmse_norm}}{\eqn{CRMSE/(\beta*RMS_U)}{CRMSE/(\beta RMS_U)}}
+  \item{\code{r}}{R (see \link{R})}
+  \item{\code{crmse_ratio}}{\eqn{abs(NMSD)/sqrt(2*(1-R))}{\frac{|NMSD|}{\sqrt{2(1-R)}}} as in eq.34, p.30 in Janssen et al., 2017}
   \item{\code{bias_norm}}{\eqn{BIAS/(\beta*RMS_U)}{BIAS/(\beta RMS_U)}}
   \item{\code{mqi_ts}}{Model Quality Indicator \eqn{RMSE/(\beta*RMS_U)}{RMSE/(\beta RMS_U)} (see \link{MQI_ts_synth})}
   \item{\code{mqi_year}}{Model Quality Indicator for yearly averages (see \link{MQI_year})}
@@ -56,7 +58,7 @@ target_plot(t_rep)
   }}
 }
 
-\code{target_plot} returns a a target plot (object of class \code{ggplot} and \code{gg})
+\code{target_plot} returns a target plot (object of class \code{ggplot} and \code{gg})
 }
 \description{
 \code{target_report}: prepare input for target plot

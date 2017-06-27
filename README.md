@@ -8,6 +8,8 @@ A toolkit of R functions for air quality model benchmarking, inspired by the [DE
 delta + R -> dartle
 ```
 
+[![DOI](https://zenodo.org/badge/93507746.svg)](https://zenodo.org/badge/latestdoi/93507746)
+
 ## installation
 ```r
 require("devtools")

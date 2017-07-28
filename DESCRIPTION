@@ -1,7 +1,7 @@
 Package: dartle
 Type: Package
 Title: Air Quality Model Benchmarking
-Version: 0.1.0
+Version: 0.1.1
 Author: Giovanni Bonafè
 Maintainer: Giovanni Bonafè <giovanni.bonafe@arpa.fvg.it>
 Description: A toolkit of functions for air quality model benchmarking,

@@ -2,7 +2,9 @@ Package: dartle
 Type: Package
 Title: Air Quality Model Benchmarking
 Version: 0.1.1
-Author: Giovanni Bonafè
+Authors@R: c(person("Giovanni", "Bonafè", role = c("aut", "cre"),
+                     email = "iovanni.bonafe@arpa.fvg.it"))
+Author: Giovanni Bonafè [aut, cre]
 Maintainer: Giovanni Bonafè <giovanni.bonafe@arpa.fvg.it>
 Description: A toolkit of functions for air quality model benchmarking,
     inspired by the DELTA tool (JRC-IES) and the work of the FAIRMODE WP1.

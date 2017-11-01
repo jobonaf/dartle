@@ -1,0 +1,5 @@
+navbar:
+  type: inverse
+  right:
+    - icon: fa-github fa-lg
+      href: github.com/jobonaf/dartle

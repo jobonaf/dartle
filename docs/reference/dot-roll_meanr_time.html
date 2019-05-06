@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Core Set of Statistical Indicators — indicators • dartle</title>
+<title>Rolling Mean — .roll_meanr_time • dartle</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -31,9 +31,9 @@
 
 
 
-<meta property="og:title" content="Core Set of Statistical Indicators — indicators" />
+<meta property="og:title" content="Rolling Mean — .roll_meanr_time" />
 
-<meta property="og:description" content="RMSE: Root Mean Square Error" />
+<meta property="og:description" content="Rolling Mean" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -118,60 +118,43 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Core Set of Statistical Indicators</h1>
+    <h1>Rolling Mean</h1>
     
-    <div class="hidden name"><code>indicators.Rd</code></div>
+    <div class="hidden name"><code>dot-roll_meanr_time.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p><code>RMSE</code>: Root Mean Square Error</p>
+    <p>Rolling Mean</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>RMSE</span>(<span class='no'>obs</span>, <span class='no'>mod</span>)
-
-<span class='fu'>R</span>(<span class='no'>obs</span>, <span class='no'>mod</span>)
-
-<span class='fu'>BIAS</span>(<span class='no'>obs</span>, <span class='no'>mod</span>)
-
-<span class='fu'>NMB</span>(<span class='no'>obs</span>, <span class='no'>mod</span>)
-
-<span class='fu'>NMSD</span>(<span class='no'>obs</span>, <span class='no'>mod</span>)
-
-<span class='fu'>CRMSE</span>(<span class='no'>obs</span>, <span class='no'>mod</span>)</pre>
+    <pre class="usage"><span class='fu'>.roll_meanr_time</span>(<span class='no'>x</span>, <span class='no'>time</span>, <span class='kw'>tstep</span> <span class='kw'>=</span> <span class='st'>"1 hour"</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>8</span>, <span class='kw'>req</span> <span class='kw'>=</span> <span class='fl'>6</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>obs</th>
-      <td><p>numeric vector of observed values</p></td>
+      <th>x</th>
+      <td><p>numeric vector of values to be processed</p></td>
     </tr>
     <tr>
-      <th>mod</th>
-      <td><p>numeric vector of modelled values</p></td>
+      <th>time</th>
+      <td><p>vector of type <code>POSIXct</code></p></td>
+    </tr>
+    <tr>
+      <th>tstep</th>
+      <td><p>time step (see <code><a href='https://rdrr.io/r/base/seq.POSIXt.html'>seq.POSIXt</a></code>)</p></td>
+    </tr>
+    <tr>
+      <th>n</th>
+      <td><p>rolling mean width</p></td>
+    </tr>
+    <tr>
+      <th>req</th>
+      <td><p>minimum valid data required in the rolling mean window</p></td>
     </tr>
     </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p><code>RMSE</code>: Root Mean Square Error as in eq.1, tab.1, p.18 in Janssen et al., 2017
-$$RMSE= \sqrt{ \frac{1}{N} \sum_{i=1}^{N}{(M_i - O_i})^2}$$</p>
-<p><code>R</code>: Correlation coefficient as in eq.2, tab.1, p.18 in Janssen et al., 2017
-$$R= \frac{\sum_{i=1}^{N}{(O_i - \bar{O})(M_i - \bar{M})}}{\sqrt{\sum_{i=1}^{N}{(O_i - \bar{O})^2}}{\sqrt{\sum_{i=1}^{N}{(M_i - \bar{M}})^2}}}$$</p>
-<p><code>BIAS</code>: bias as in eq.3, tab.1, p.18 in Janssen et al., 2017
-$$BIAS=\bar{M}-\bar{O}$$</p>
-<p><code>NMB</code>: Normalised Mean Bias as in eq.3, tab.1, p.18 in Janssen et al., 2017
-$$NMB=\frac{\bar{M}-\bar{O}}{\bar{O}}$$</p>
-<p><code>NMSD</code>: Normalised Mean Standard Deviation as in eq.4, tab.1, p.18 in Janssen et al., 2017
-$$NMSD=\frac{\sigma_{M}-\sigma_{O}}{\sigma_{O}}$$</p>
-<p><code>CRMSE</code>: Centered Root Mean Square Error as in eq.31, p.29 in Janssen et al., 2017
-$$CRMSE= \sqrt{ \frac{1}{N} \sum_{i=1}^{N}{[(M_i - \bar{M})-(O_i - \bar{O})]^2 }}$$</p>
-    
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p>Janssen et al., 2017. "Guidance Document on Modelling Quality Objectives and Benchmarking. Version 2.1"</p>
     
 
   </div>
@@ -179,11 +162,7 @@ $$CRMSE= \sqrt{ \frac{1}{N} \sum_{i=1}^{N}{[(M_i - \bar{M})-(O_i - \bar{O})]^2 }
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#references">References</a></li>
-          </ul>
+                </ul>
 
   </div>
 </div>

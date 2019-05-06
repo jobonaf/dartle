@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Core Set of Statistical Indicators — indicators • dartle</title>
+<title>Page not found (404) • dartle</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -26,15 +26,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
-<link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script>
+<link href="pkgdown.css" rel="stylesheet">
+<script src="pkgdown.js"></script>
 
 
 
-<meta property="og:title" content="Core Set of Statistical Indicators — indicators" />
-
-<meta property="og:description" content="RMSE: Root Mean Square Error" />
-<meta name="twitter:card" content="summary" />
+<meta property="og:title" content="Page not found (404)" />
 
 
 
@@ -51,7 +48,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-topic">
+    <div class="container template-title-body">
       <header>
       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
@@ -63,7 +60,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">dartle</a>
+        <a class="navbar-link" href="index.html">dartle</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
@@ -71,13 +68,13 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
+  <a href="index.html">
     <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -87,21 +84,21 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/dartle-usage.html">Air quality model benchmarking with _dartle_</a>
+      <a href="articles/dartle-usage.html">Air quality model benchmarking with _dartle_</a>
     </li>
     <li>
-      <a href="../articles/rsconnect/documents/dartle-usage.html">UNKNOWN TITLE</a>
+      <a href="articles/rsconnect/documents/dartle-usage.html">UNKNOWN TITLE</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">Changelog</a>
+  <a href="news/index.html">Changelog</a>
 </li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="../github.com/jobonaf/dartle">
+  <a href="github.com/jobonaf/dartle">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -116,77 +113,17 @@
       </header>
 
 <div class="row">
-  <div class="col-md-9 contents">
+  <div class="contents col-md-9">
     <div class="page-header">
-    <h1>Core Set of Statistical Indicators</h1>
-    
-    <div class="hidden name"><code>indicators.Rd</code></div>
+      <h1>Page not found (404)</h1>
     </div>
 
-    <div class="ref-description">
-    
-    <p><code>RMSE</code>: Root Mean Square Error</p>
-    
-    </div>
-
-    <pre class="usage"><span class='fu'>RMSE</span>(<span class='no'>obs</span>, <span class='no'>mod</span>)
-
-<span class='fu'>R</span>(<span class='no'>obs</span>, <span class='no'>mod</span>)
-
-<span class='fu'>BIAS</span>(<span class='no'>obs</span>, <span class='no'>mod</span>)
-
-<span class='fu'>NMB</span>(<span class='no'>obs</span>, <span class='no'>mod</span>)
-
-<span class='fu'>NMSD</span>(<span class='no'>obs</span>, <span class='no'>mod</span>)
-
-<span class='fu'>CRMSE</span>(<span class='no'>obs</span>, <span class='no'>mod</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>obs</th>
-      <td><p>numeric vector of observed values</p></td>
-    </tr>
-    <tr>
-      <th>mod</th>
-      <td><p>numeric vector of modelled values</p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p><code>RMSE</code>: Root Mean Square Error as in eq.1, tab.1, p.18 in Janssen et al., 2017
-$$RMSE= \sqrt{ \frac{1}{N} \sum_{i=1}^{N}{(M_i - O_i})^2}$$</p>
-<p><code>R</code>: Correlation coefficient as in eq.2, tab.1, p.18 in Janssen et al., 2017
-$$R= \frac{\sum_{i=1}^{N}{(O_i - \bar{O})(M_i - \bar{M})}}{\sqrt{\sum_{i=1}^{N}{(O_i - \bar{O})^2}}{\sqrt{\sum_{i=1}^{N}{(M_i - \bar{M}})^2}}}$$</p>
-<p><code>BIAS</code>: bias as in eq.3, tab.1, p.18 in Janssen et al., 2017
-$$BIAS=\bar{M}-\bar{O}$$</p>
-<p><code>NMB</code>: Normalised Mean Bias as in eq.3, tab.1, p.18 in Janssen et al., 2017
-$$NMB=\frac{\bar{M}-\bar{O}}{\bar{O}}$$</p>
-<p><code>NMSD</code>: Normalised Mean Standard Deviation as in eq.4, tab.1, p.18 in Janssen et al., 2017
-$$NMSD=\frac{\sigma_{M}-\sigma_{O}}{\sigma_{O}}$$</p>
-<p><code>CRMSE</code>: Centered Root Mean Square Error as in eq.31, p.29 in Janssen et al., 2017
-$$CRMSE= \sqrt{ \frac{1}{N} \sum_{i=1}^{N}{[(M_i - \bar{M})-(O_i - \bar{O})]^2 }}$$</p>
-    
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p>Janssen et al., 2017. "Guidance Document on Modelling Quality Objectives and Benchmarking. Version 2.1"</p>
-    
+Content not found. Please use links in the navbar.
 
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
 
-      <li><a href="#references">References</a></li>
-          </ul>
-
-  </div>
 </div>
+
 
       <footer>
       <div class="copyright">

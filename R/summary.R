@@ -9,7 +9,6 @@
 #' then plot 1 will go in the upper left, 2 will go in the upper right, and
 #' 3 will go all the way across the bottom.
 #'
-#' @return a ggplot object
 #' @export
 multiplot <- function(..., plotlist=NULL, cols=1, layout=NULL) {
   library(grid)
@@ -61,6 +60,7 @@ multiplot <- function(..., plotlist=NULL, cols=1, layout=NULL) {
 #' @param pollutant one of \code{"NO2"}, \code{"O3"}, \code{"PM10"}, \code{"PM2.5"}
 #' @param beta parameter \eqn{\beta} (default is 2)
 #' @param s_rep output of \code{summary_report}
+#' @param title main title for the plot (if \code{NULL}, is build as \code{paste("Summary statistics",s_rep$parameters$pollutant)})
 #' @name summary_plot
 #'
 #' @return \code{summary_report} returns a list of 3:
@@ -152,10 +152,9 @@ summary_report <- function(data, obs, mod, point,
 #'
 #' @import ggplot2
 #' @importFrom tidyr gather
-#' @return \code{summary_plot} returns a summary plot (object of class \code{ggplot} and \code{gg})
 #' @rdname summary_plot
 #' @export
-summary_plot <- function(s_rep){
+summary_plot <- function(s_rep, title=NULL){
 
   renameIndex <- function(x) switch(as.character(x),
                                     Obs.ave="'mean\n'~(mu*g/m^3)",
@@ -170,14 +169,14 @@ summary_plot <- function(s_rep){
                                     mpi_sdev_space="st.dev.['norm,space']")
 
 
-
+  if(is.null(title)) title <- paste("Summary statistics",s_rep$parameters$pollutant)
   p1 <- ggplot(s_rep$summary_points %>%
                  gather(key = "Indicator", value = "Value", -Point) %>%
                  filter(Indicator%in%c("Obs.ave","Obs.nexc")) %>%
                  filter(!is.na(Value)) %>%
                  mutate(Indicator=sapply(Indicator,renameIndex)),
                aes(x=Value,y=0)) +
-    ggtitle(paste("Summary statistics",s_rep$parameters$pollutant),
+    ggtitle(title,
             subtitle = "observations")
 
   p2<- ggplot(s_rep$summary_points %>%
@@ -272,12 +271,11 @@ summary_plot <- function(s_rep){
   p5 <- void_layout(p5)
 
   nc<-7
-  p <- multiplot(p1,p2,p3,p4,p5,cols=nc,
-                 layout=matrix(c(rep(1,nc*(2+!is.na(threshold(s_rep$parameters$pollutant)))),
-                                 rep(c(rep(2,nc-1),4),5),
-                                 rep(c(rep(3,nc-1),5),3)),
-                               ncol=nc, byrow = T))
-  return(p)
+  multiplot(p1,p2,p3,p4,p5,cols=nc,
+            layout=matrix(c(rep(1,nc*(2+!is.na(threshold(s_rep$parameters$pollutant)))),
+                            rep(c(rep(2,nc-1),4),5),
+                            rep(c(rep(3,nc-1),5),3)),
+                          ncol=nc, byrow = T))
 }
 
 

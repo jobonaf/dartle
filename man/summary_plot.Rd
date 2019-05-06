@@ -3,13 +3,12 @@
 \name{summary_plot}
 \alias{summary_plot}
 \alias{summary_report}
-\alias{summary_plot}
 \title{summary plot}
 \usage{
 summary_report(data, obs, mod, point, pollutant = c("NO2", "O3", "PM10",
   "PM2.5"), beta = 2)
 
-summary_plot(s_rep)
+summary_plot(s_rep, title = NULL)
 }
 \arguments{
 \item{data}{a data frame including observations and model forecasts}
@@ -25,6 +24,8 @@ summary_plot(s_rep)
 \item{beta}{parameter \eqn{\beta} (default is 2)}
 
 \item{s_rep}{output of \code{summary_report}}
+
+\item{title}{main title for the plot (if \code{NULL}, is build as \code{paste("Summary statistics",s_rep$parameters$pollutant)})}
 }
 \value{
 \code{summary_report} returns a list of 3:
@@ -54,13 +55,9 @@ summary_plot(s_rep)
   \item{\code{beta}}{same as in input}
   }}
 }
-
-\code{summary_plot} returns a summary plot (object of class \code{ggplot} and \code{gg})
 }
 \description{
 \code{summary_report}: prepare input
-
-\code{summary_plot}: summary plot
 }
 \examples{
 # prepare dataset

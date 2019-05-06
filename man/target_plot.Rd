@@ -3,7 +3,6 @@
 \name{target_plot}
 \alias{target_plot}
 \alias{target_report}
-\alias{target_plot}
 \title{Target plot}
 \usage{
 target_report(data, obs, mod, point, pollutant = c("NO2", "O3", "PM10",
@@ -62,8 +61,6 @@ target_plot(t_rep)
 }
 \description{
 \code{target_report}: prepare input for target plot
-
-\code{target_plot}: target plot
 }
 \examples{
 # prepare dataset

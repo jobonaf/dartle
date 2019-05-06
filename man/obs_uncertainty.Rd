@@ -7,7 +7,8 @@
 \alias{U_obs_95_year}
 \title{Measurements Uncertainty}
 \usage{
-U_obs_95(obs, pollutant = NULL, U_RV95r = NULL, alpha = NULL, RV = NULL)
+U_obs_95(obs, pollutant = NULL, U_RV95r = NULL, alpha = NULL,
+  RV = NULL)
 
 RMS_U_obs(obs, pollutant = NULL, U_RV95r = NULL, alpha = NULL,
   RV = NULL)
@@ -47,8 +48,6 @@ as in eq.12, p.20 in Janssen et al., 2017
 \code{U_obs_95}: Measurements uncertainty
 
 \code{RMS_U_obs}: Root Mean Square Uncertainty
-
-\code{U_obs_95_year}: Measurements uncertainty for yearly averaged values
 }
 \examples{
 # concentrations

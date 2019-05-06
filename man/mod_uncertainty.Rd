@@ -31,8 +31,6 @@ as in eq.24, p.24 in Janssen et al., 2017
 }
 \description{
 \code{RMS_U_mod}: RMS uncertainty for model time series
-
-\code{U_mod_year}: Uncertainty for model yearly averages
 }
 \references{
 Janssen et al., 2017. "Guidance Document on Modelling Quality Objectives and Benchmarking. Version 2.1"

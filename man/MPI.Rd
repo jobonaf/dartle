@@ -61,16 +61,6 @@ as in eq.35, p.35 in Janssen et al., 2017
 }
 \description{
 \code{MPI_bias}: MPI for bias
-
-\code{MPI_corr_time}: temporal MPI for correlation
-
-\code{MPI_sdev_time}: temporal MPI for standard deviation
-
-\code{MPI_corr_space}: spatial MPI for correlation
-
-\code{MPI_sdev_space}: spatial MPI for standard deviation
-
-\code{MPI_perc}: MPI for high percentile values
 }
 \references{
 Janssen et al., 2017. "Guidance Document on Modelling Quality Objectives and Benchmarking. Version 2.1"

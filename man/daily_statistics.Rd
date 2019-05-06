@@ -28,6 +28,4 @@ dMean(data, value, time = "Time", point = "Point", req = 18)
 }
 \description{
 \code{dMaxAvg8h}: daily maximum of 8h rolling mean
-
-\code{dMean}: daily average
 }

@@ -48,16 +48,6 @@ CRMSE(obs, mod)
 }
 \description{
 \code{RMSE}: Root Mean Square Error
-
-\code{R}: Correlation coefficient
-
-\code{BIAS}: Bias
-
-\code{NMB}: Normalised Mean Bias
-
-\code{NMSD}: Normalised Mean Standard Deviation
-
-\code{CRMSE}: Centered Root Mean Square Error
 }
 \references{
 Janssen et al., 2017. "Guidance Document on Modelling Quality Objectives and Benchmarking. Version 2.1"

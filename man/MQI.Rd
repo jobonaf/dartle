@@ -40,10 +40,6 @@ as in eq.18, p.23 in Janssen et al., 2017
 }
 \description{
 \code{MQI_ts}: MQI for a time series (vector)
-
-\code{MQI_ts_synth}: MQI for a time series (synthetic scalar)
-
-\code{MQI_year}: MQI for yearly average
 }
 \references{
 Janssen et al., 2017. "Guidance Document on Modelling Quality Objectives and Benchmarking. Version 2.1"

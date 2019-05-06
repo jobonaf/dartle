@@ -1,3 +1,8 @@
+# dartle 0.1.2
+* in summary_plot: customizable title, no NULL output
+* updated man pages
+* updated doc pages
+
 # dartle 0.1.1
 * vignette dartle-usage
 

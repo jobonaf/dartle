@@ -1,9 +1,9 @@
 Package: dartle
 Type: Package
 Title: Air Quality Model Benchmarking
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: c(person("Giovanni", "Bonafè", role = c("aut", "cre"),
-                     email = "iovanni.bonafe@arpa.fvg.it"))
+                     email = "giovanni.bonafe@arpa.fvg.it"))
 Author: Giovanni Bonafè [aut, cre]
 Maintainer: Giovanni Bonafè <giovanni.bonafe@arpa.fvg.it>
 Description: A toolkit of functions for air quality model benchmarking,
@@ -11,7 +11,7 @@ Description: A toolkit of functions for air quality model benchmarking,
 License: MIT License + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
 Depends: R (>= 2.10)
 Imports: stats, dplyr, RcppRoll, data.table, ggplot2, tidyr
 Suggests: knitr,
